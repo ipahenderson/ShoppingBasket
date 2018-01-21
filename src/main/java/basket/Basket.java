@@ -57,7 +57,7 @@ public class Basket {
 
     public void applyDiscounts(){
         for (IDiscount discount : discounts){
-            discount.applyDiscount(items, total);
+             setTotal(discount.applyDiscount(items, total));
         }
     }
 
