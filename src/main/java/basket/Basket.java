@@ -20,16 +20,8 @@ public class Basket {
         return items;
     }
 
-    public void setItems(ArrayList<Item> items) {
-        this.items = items;
-    }
-
     public ArrayList<IDiscount> getDiscounts() {
         return discounts;
-    }
-
-    public void setDiscounts(ArrayList<IDiscount> discounts) {
-        this.discounts = discounts;
     }
 
     public double getTotal() {
@@ -39,8 +31,6 @@ public class Basket {
     public void setTotal(double total) {
         this.total = total;
     }
-
-
 
     public void updateTotal(Item item) {
         total += item.getPrice();
@@ -72,5 +62,9 @@ public class Basket {
     public void emptyBasket() {
         this.items.clear();
         this.total = 0;
+    }
+
+    public void removeItem(Item searchItem) {
+        this.items.remove(searchItem);
     }
 }

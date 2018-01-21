@@ -17,7 +17,9 @@ public class TestShoppingBasket {
     Basket basket;
     BoGoF boGoF;
     PercentageDiscount tenPercent;
+    PercentageDiscount twentyPercent;
     LoyaltyCard loyaltyCard;
+    LoyaltyCard staffCard;
 
     @Before
     public void before(){
@@ -28,7 +30,9 @@ public class TestShoppingBasket {
         basket = new Basket();
         boGoF = new BoGoF();
         tenPercent = new PercentageDiscount(20.00, 0.9);
+        twentyPercent = new PercentageDiscount(30.00, 0.8);
         loyaltyCard = new LoyaltyCard(0.98);
+        staffCard = new LoyaltyCard(0.96);
 
     }
 
@@ -90,6 +94,16 @@ public class TestShoppingBasket {
     }
 
     @Test
+    public void canUseDifferentPercentageDiscounts(){
+        basket.addItem(dvd);
+        basket.addItem(dvd);
+        basket.addDiscount(twentyPercent);
+        basket.applyDiscounts();
+        assertEquals(32.00, basket.getTotal(), 0.01);
+        assertEquals(40.00, basket.priceBeforeDiscount(), 0.01);
+    }
+
+    @Test
     public void percentageDiscountNotAppliedIfBelowTotalNeeded(){
         basket.addItem(cd);
         basket.addItem(cd);
@@ -123,6 +137,14 @@ public class TestShoppingBasket {
     }
 
     @Test
+    public void canUseDifferentLoyaltyCards(){
+        basket.addItem(dvd);
+        basket.addDiscount(staffCard);
+        basket.applyDiscounts();
+        assertEquals(19.20, basket.getTotal(), 0.01);
+    }
+
+    @Test
     public void canUseAllDiscounts(){
         basket.addItem(apple);
         basket.addItem(apple);
@@ -133,6 +155,16 @@ public class TestShoppingBasket {
         basket.addDiscount(loyaltyCard);
         basket.applyDiscounts();
         assertEquals(22.05, basket.getTotal(), 0.01);
+    }
+
+
+    @Test
+    public void canRemoveItem(){
+        basket.addItem(apple);
+        basket.addItem(apple);
+        assertEquals(2, basket.getItems().size());
+        basket.removeItem(apple);
+        assertEquals(1, basket.getItems().size());
     }
 
 
