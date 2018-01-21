@@ -5,5 +5,5 @@ import java.util.ArrayList;
 
 public interface IDiscount {
 
-    void applyDiscount(ArrayList<Item> items, double total);
+    double applyDiscount(ArrayList<Item> items, double total);
 }

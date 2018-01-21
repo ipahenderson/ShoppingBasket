@@ -8,27 +8,37 @@ import static org.junit.Assert.assertEquals;
 
 public class TestShoppingBasket {
 
-    Item item1;
+    Item apple;
+    Item gum;
     Basket basket;
     BoGoF boGoF;
 
     @Before
     public void before(){
-        item1 = new Item("Apple", 2.00);
+        apple = new Item("Apple", 2.00);
+        gum = new Item("Gum", 1.00);
         basket = new Basket();
-        basket.updateTotal();
         boGoF = new BoGoF();
 
     }
 
+
+    @Test
+    public void canGetTotal(){
+        basket.addItem(apple);
+        basket.addItem(apple);
+        basket.addItem(gum);
+        assertEquals(5.00, basket.getTotal(), 0.01);
+    }
+
     @Test
     public void BoGoF(){
-        basket.addItem(item1);
-        basket.addItem(item1);
-        basket.updateTotal();
+        basket.addItem(apple);
+        basket.addItem(apple);
+        basket.addItem(gum);
         basket.addDiscount(boGoF);
-        basket.applyDiscounts();
-        assertEquals(2.00, basket.getTotal(), 0.01);
+        basket.setTotal(boGoF.applyDiscount(basket.getItems(), basket.getTotal()));
+        assertEquals(3.00, basket.getTotal(), 0.01);
 
     }
 

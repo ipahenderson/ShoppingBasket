@@ -40,16 +40,15 @@ public class Basket {
         this.total = total;
     }
 
-    public void addItem(Item item) {
-        this.items.add(item);
+
+
+    public void updateTotal(Item item) {
+        total += item.getPrice();
     }
 
-    public void updateTotal() {
-        double totalToUpdate = 0.0;
-        for(Item item : items){
-            totalToUpdate += item.getPrice();
-        }
-        this.total += totalToUpdate;
+    public void addItem(Item item) {
+        this.items.add(item);
+        updateTotal(item);
     }
 
     public void addDiscount(IDiscount discount) {
@@ -59,6 +58,12 @@ public class Basket {
     public void applyDiscounts(){
         for (IDiscount discount : discounts){
             discount.applyDiscount(items, total);
+        }
+    }
+
+    public void updateAllPrices() {
+        for (Item item : items){
+            this.total += item.getPrice();
         }
     }
 }
