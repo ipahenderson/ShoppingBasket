@@ -27,8 +27,8 @@ public class TestShoppingBasket {
         cd = new Item("CD", 3.00);
         basket = new Basket();
         boGoF = new BoGoF();
-        tenPercent = new TenPercent();
-        loyaltyCard = new LoyaltyCard();
+        tenPercent = new TenPercent(20.00, 0.9);
+        loyaltyCard = new LoyaltyCard(0.98);
 
     }
 
@@ -87,6 +87,17 @@ public class TestShoppingBasket {
         basket.applyDiscounts();
         assertEquals(18.00, basket.getTotal(), 0.01);
         assertEquals(20.00, basket.priceBeforeDiscount(), 0.01);
+    }
+
+    @Test
+    public void tenPercentNotAppliedIfBelowTotalNeeded(){
+        basket.addItem(cd);
+        basket.addItem(cd);
+        basket.addItem(cd);
+        basket.addDiscount(tenPercent);
+        basket.applyDiscounts();
+        assertEquals(9.00, basket.getTotal(), 0.01);
+
     }
 
 
