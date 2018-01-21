@@ -27,6 +27,8 @@ public class TestShoppingBasket {
 
     }
 
+
+
     @Test
     public void canAddItems(){
         basket.addItem(apple);
@@ -51,6 +53,7 @@ public class TestShoppingBasket {
         basket.addDiscount(boGoF);
         basket.applyDiscounts();
         assertEquals(3.00, basket.getTotal(), 0.01);
+        assertEquals(5.00, basket.priceBeforeDiscount(), 0.01);
 
     }
 
@@ -60,6 +63,7 @@ public class TestShoppingBasket {
         basket.addDiscount(tenPercent);
         basket.applyDiscounts();
         assertEquals(18.00, basket.getTotal(), 0.01);
+        assertEquals(20.00, basket.priceBeforeDiscount(), 0.01);
     }
 
 
@@ -72,6 +76,7 @@ public class TestShoppingBasket {
         basket.addDiscount(tenPercent);
         basket.applyDiscounts();
         assertEquals(19.80, basket.getTotal(), 0.01);
+        assertEquals(24.00, basket.priceBeforeDiscount(), 0.01);
     }
 
 

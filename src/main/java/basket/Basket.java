@@ -61,9 +61,11 @@ public class Basket {
         }
     }
 
-    public void updateAllPrices() {
+    public double priceBeforeDiscount() {
+        double price = 0.0;
         for (Item item : items){
-            this.total += item.getPrice();
+            price += item.getPrice();
         }
+        return price;
     }
 }
