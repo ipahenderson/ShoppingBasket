@@ -27,6 +27,13 @@ public class TestShoppingBasket {
 
     }
 
+    @Test
+    public void canAddItems(){
+        basket.addItem(apple);
+        basket.addItem(gum);
+        assertEquals(2, basket.getItems().size());
+    }
+
 
     @Test
     public void canGetTotal(){
@@ -54,5 +61,19 @@ public class TestShoppingBasket {
         basket.applyDiscounts();
         assertEquals(18.00, basket.getTotal(), 0.01);
     }
+
+
+    @Test
+    public void canApplyBoGoFandTenPercent(){
+        basket.addItem(apple);
+        basket.addItem(apple);
+        basket.addItem(dvd);
+        basket.addDiscount(boGoF);
+        basket.addDiscount(tenPercent);
+        basket.applyDiscounts();
+        assertEquals(19.80, basket.getTotal(), 0.01);
+    }
+
+
 
 }
