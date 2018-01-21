@@ -4,12 +4,12 @@ import basket.Item;
 
 import java.util.ArrayList;
 
-public class TenPercent implements IDiscount{
+public class PercentageDiscount implements IDiscount{
 
     double modifier;
     double totalneeded;
 
-    public TenPercent(double totalneeded, double modifier) {
+    public PercentageDiscount(double totalneeded, double modifier) {
         this.totalneeded = totalneeded;
         this.modifier = modifier;
     }

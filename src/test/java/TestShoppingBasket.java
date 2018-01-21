@@ -2,7 +2,7 @@ import basket.Basket;
 import basket.Item;
 import discount.BoGoF;
 import discount.LoyaltyCard;
-import discount.TenPercent;
+import discount.PercentageDiscount;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,7 +16,7 @@ public class TestShoppingBasket {
     Item cd;
     Basket basket;
     BoGoF boGoF;
-    TenPercent tenPercent;
+    PercentageDiscount tenPercent;
     LoyaltyCard loyaltyCard;
 
     @Before
@@ -27,7 +27,7 @@ public class TestShoppingBasket {
         cd = new Item("CD", 3.00);
         basket = new Basket();
         boGoF = new BoGoF();
-        tenPercent = new TenPercent(20.00, 0.9);
+        tenPercent = new PercentageDiscount(20.00, 0.9);
         loyaltyCard = new LoyaltyCard(0.98);
 
     }
@@ -81,7 +81,7 @@ public class TestShoppingBasket {
     }
 
     @Test
-    public void tenPercentOffTwenty(){
+    public void canApplyPercentageDiscount(){
         basket.addItem(dvd);
         basket.addDiscount(tenPercent);
         basket.applyDiscounts();
@@ -90,7 +90,7 @@ public class TestShoppingBasket {
     }
 
     @Test
-    public void tenPercentNotAppliedIfBelowTotalNeeded(){
+    public void percentageDiscountNotAppliedIfBelowTotalNeeded(){
         basket.addItem(cd);
         basket.addItem(cd);
         basket.addItem(cd);
@@ -102,7 +102,7 @@ public class TestShoppingBasket {
 
 
     @Test
-    public void canApplyBoGoFandTenPercent(){
+    public void canApplyBoGoFandPercentageDiscounts(){
         basket.addItem(apple);
         basket.addItem(apple);
         basket.addItem(dvd);
