@@ -13,6 +13,7 @@ public class TestShoppingBasket {
     Item apple;
     Item gum;
     Item dvd;
+    Item cd;
     Basket basket;
     BoGoF boGoF;
     TenPercent tenPercent;
@@ -22,7 +23,8 @@ public class TestShoppingBasket {
     public void before(){
         apple = new Item("Apple", 2.00);
         gum = new Item("Gum", 1.00);
-        dvd = new Item("Gum", 20.00);
+        dvd = new Item("DVD", 20.00);
+        cd = new Item("CD", 3.00);
         basket = new Basket();
         boGoF = new BoGoF();
         tenPercent = new TenPercent();
@@ -108,6 +110,21 @@ public class TestShoppingBasket {
         basket.applyDiscounts();
         assertEquals(19.60, basket.getTotal(), 0.01);
     }
+
+    @Test
+    public void canUseAllDiscounts(){
+        basket.addItem(apple);
+        basket.addItem(apple);
+        basket.addItem(dvd);
+        basket.addItem(cd);
+        basket.addDiscount(boGoF);
+        basket.addDiscount(tenPercent);
+        basket.addDiscount(loyaltyCard);
+        basket.applyDiscounts();
+        assertEquals(22.05, basket.getTotal(), 0.01);
+    }
+
+
 
 
 
