@@ -125,6 +125,17 @@ public class TestShoppingBasket {
     }
 
 
+    @Test
+    public void canEmptyBasket(){
+        basket.addItem(apple);
+        assertEquals(1, basket.getItems().size());
+        assertEquals(2.00, basket.getTotal(), 0.01);
+        basket.emptyBasket();
+        assertEquals(0, basket.getItems().size());
+        assertEquals(0.0, basket.getTotal(), 0.01);
+
+    }
+
 
 
 

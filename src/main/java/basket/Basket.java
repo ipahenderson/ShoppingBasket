@@ -68,4 +68,9 @@ public class Basket {
         }
         return price;
     }
+
+    public void emptyBasket() {
+        this.items.clear();
+        this.total = 0;
+    }
 }
