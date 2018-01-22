@@ -85,6 +85,17 @@ public class TestShoppingBasket {
     }
 
     @Test
+    public void boGoFWorksTwice(){
+        basket.addItem(apple);
+        basket.addItem(apple);
+        basket.addItem(apple);
+        basket.addItem(apple);
+        basket.addDiscount(boGoF);
+        basket.applyDiscounts();
+        assertEquals(4.00, basket.getTotal(), 0.01);
+    }
+
+    @Test
     public void canApplyPercentageDiscount(){
         basket.addItem(dvd);
         basket.addDiscount(tenPercent);

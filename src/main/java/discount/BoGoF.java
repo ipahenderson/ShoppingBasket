@@ -12,7 +12,7 @@ public class BoGoF implements IDiscount{
     @Override
     public double applyDiscount(ArrayList<Item> items, double total) {
         ArrayList<Item> bogofCheck = new ArrayList<>();
-        int bogofCount = 1;
+        int bogofCount = 0;
         for (Item item : items){
             if(!bogofCheck.contains(item)){
                 bogofCheck.add(item);
